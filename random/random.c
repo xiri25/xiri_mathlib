@@ -8,5 +8,8 @@ void rand_init()
 
 double double_rand()
 {
-    return ( (double)rand() / RAND_MAX ) * rand(); // rand[0,1] * rand[0, RAND_MAX]
+    //Valores mas razonables para evitar overflow
+    double max = 1e3;
+    double min = -1e3;
+    return min + ( (double)rand() / RAND_MAX ) * (max - min); 
 }

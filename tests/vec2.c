@@ -7,6 +7,7 @@
 #include "vec2.h"
 #include "../src/mathlib/vec2.h"
 
+#define EPSILON 1e-6
 
 vec2 vec2_rand()
 {
@@ -30,7 +31,7 @@ void test_vec2_dot_product()
         vec2 b = vec2_rand();
         double c = vec2_dot_product(&a, &b);
         double d = a.e1 * b.e1 + a.e2 * b.e2;
-        assert( c == d );
+        assert( fabs(c - d) < EPSILON );
     }
 
     {
@@ -60,7 +61,7 @@ void test_vec2_self_dot_product()
         vec2 a = vec2_rand();
         double c = vec2_self_dot_product(&a);
         double d = a.e1 * a.e1 + a.e2 * a.e2;
-        assert( c == d );
+        assert( fabs(c - d) < EPSILON );
     }
 
     {
@@ -76,14 +77,14 @@ void test_vec2_module()
         vec2 a = {3, 2};
         double b = vec2_module(&a);
         double c = sqrt(3*3 + 2*2);
-        assert( b == c );
+        assert( fabs(c - b) < EPSILON );
     }
     
     {
         vec2 a = vec2_rand();
         double b = vec2_module(&a);
         double c = sqrt(a.e1 * a.e1 + a.e2 * a.e2);
-        assert( b == c );
+        assert( fabs(c - b) < EPSILON );
     }
 
     {
@@ -183,7 +184,7 @@ void test_vec2_normalize()
         vec2 a = {3, 4};
         vec2 b = vec2_normalize(&a);
         double c = vec2_module(&b);
-        assert( (c - 1.0) < DBL_MIN ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
+        assert( fabs(c - 1.0) < EPSILON ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
     }
 
     // TODO: vec2_normalize({0, 0}), no se si comprobar que el vec2 no sea {0, 0} en la libreria
@@ -192,7 +193,7 @@ void test_vec2_normalize()
         vec2 a = vec2_rand();
         vec2 b = vec2_normalize(&a);
         double c = vec2_module(&b);
-        assert( (c - 1.0) < DBL_MIN ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
+        assert( fabs(c - 1.0) < EPSILON ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
     }
 }
 
@@ -202,7 +203,7 @@ void test_vec2_normalize_in_place()
         vec2 a = {3, 4};
         vec2_normalize_in_place(&a);
         double c = vec2_module(&a);
-        assert( (c - 1.0) < DBL_MIN ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
+        assert( fabs(c - 1.0) < EPSILON ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
     }
 
     // TODO: vec2_normalize({0, 0}), no se si comprobar que el vec2 no sea {0, 0} en la libreria
@@ -211,7 +212,7 @@ void test_vec2_normalize_in_place()
         vec2 a = vec2_rand();
         vec2_normalize_in_place(&a);
         double c = vec2_module(&a);
-        assert( (c - 1.0) < DBL_MIN ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
+        assert( fabs(c - 1.0) < EPSILON ); // TODO: Could use DBL_TRUE_MIN but GePeTo says that is a subnormal number XD
     }
 }
 

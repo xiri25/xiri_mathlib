@@ -3,7 +3,9 @@ LDFLAGS_TEST=-lm -g
 SRC_FILES_TEST=tests/main.c \
 			   random/random.c \
 			   src/mathlib/vec2.c \
-			   tests/vec2.c
+			   src/mathlib/vec3.c \
+			   tests/vec2.c \
+			   tests/vec3.c
 
 .PHONY: all clean
 
