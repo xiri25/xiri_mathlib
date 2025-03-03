@@ -1,2 +1,9 @@
 test-clang
 test-gcc
+test-clang-O1
+test-clang-O2
+test-clang-O3
+test-gcc-O1
+test-gcc-O2
+test-gcc-O3
+.cache/
